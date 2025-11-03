@@ -21,7 +21,7 @@ dependencies {
     compileOnly project(":bukkit")
 
     compileOnly 'com.destroystokyo.paper:paper:1.16.5-R0.1-SNAPSHOT'
-    compileOnly("com.comphenix.protocol:ProtocolLib:5.4.0-SNAPSHOT")
+    compileOnly 'net.dmulloy2:ProtocolLib:5.4.0'
 }
 
 shadowJar {
