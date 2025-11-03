@@ -11,8 +11,10 @@ repositories {
     maven { url = 'https://nexus.ksnb.fun/repository/multilogin/' }
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 dependencies {
     compileOnly project(":api")
