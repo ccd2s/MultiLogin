@@ -14,8 +14,10 @@ dependencies {
     compileOnly 'org.geysermc.geyser:api:2.2.0-SNAPSHOT'
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 shadowJar {
     archiveFileName = 'MultiLogin-Core.JarFile'
