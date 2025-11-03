@@ -1,5 +1,5 @@
 plugins {
-    id 'com.github.johnrengelman.shadow'
+    id 'com.gradleup.shadow' version '9.1.0'
 }
 
 repositories {
@@ -11,8 +11,10 @@ repositories {
     maven { url = 'https://nexus.ksnb.fun/repository/multilogin/' }
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 
 dependencies {
     compileOnly project(":api")
@@ -30,6 +32,7 @@ dependencies {
 //    compileOnly 'com.velocitypowered:velocity-api-add:3.2.0'
 
     annotationProcessor 'com.velocitypowered:velocity-api:3.1.0'
+    compileOnly 'com.velocitypowered:velocity-proxy:3.4.0-SNAPSHOT'
 }
 
 shadowJar {

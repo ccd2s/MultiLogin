@@ -1,5 +1,5 @@
 plugins {
-    id 'com.github.johnrengelman.shadow'
+    id 'com.gradleup.shadow' version '9.1.0'
     id 'org.jetbrains.kotlin.jvm'
 }
 
@@ -10,8 +10,10 @@ repositories {
     maven { url "https://repo.dmulloy2.net/repository/public/" }
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 
 dependencies {
     compileOnly project(":api")
