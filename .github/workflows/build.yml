@@ -55,14 +55,9 @@ jobs:
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
           rm -f ~/.gradle/caches/modules-2/gc.properties
 
-      - name: Publish Release
-        if: env.release == 'true'
-        uses: marvinpinto/action-automatic-releases@latest
+      - name: Upload build
+        uses: actions/upload-artifact@v4
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "v${{ env.version }}"
-          draft: false
-          prerelease: false
-          title: "MultiLogin v${{ env.version }}"
-          files: |
+          name: MultiLogin-Bukkit.zip
+          path: |
             bukkit/build/libs/MultiLogin-Bukkit-${{ env.version }}.jar
