@@ -1,6 +1,4 @@
 import java.security.MessageDigest
-import java.util.zip.ZipEntry
-import java.util.zip.ZipInputStream
 
 apply from: '../constant.gradle'
 
@@ -162,18 +160,6 @@ class Dependency {
     }
 }
 
-static void check(byte[] bytes, String mainClass) {
-    mainClass = mainClass.replace(".", "/") + ".class"
-    ZipInputStream jarFile = new ZipInputStream(new ByteArrayInputStream(bytes))
-    ZipEntry entry
-    while ((entry = jarFile.getNextEntry()) != null) {
-        if (entry.getName() == mainClass) {
-            // ????
-            return
-        }
-    }
-    throw new RuntimeException("Bytes is damaged.")
-}
 
 static byte[] getBytes(def url) {
     def httpURLConnection = (HttpURLConnection) new URL(url).openConnection()
@@ -182,27 +168,27 @@ static byte[] getBytes(def url) {
     httpURLConnection.connect()
 
     if (httpURLConnection.getResponseCode() == 200) {
-        try (def input = httpURLConnection.getInputStream();
+        try (def input = httpURLConnection.getInputStream()
              def output = new ByteArrayOutputStream()) {
-            byte[] buffer = new byte[1024];
-            int n = 0;
+            byte[] buffer = new byte[1024]
+            int n = 0
             while ((n = input.read(buffer)) != -1) {
-                output.write(buffer, 0, n);
+                output.write(buffer, 0, n)
             }
-            return output.toByteArray();
+            return output.toByteArray()
         }
     }
     throw new IOException(httpURLConnection.getResponseCode() + "")
 }
 
 static def byteToHex(byte[] bytes) {
-    def sb = new StringBuilder();
+    def sb = new StringBuilder()
     for (def i = 0; i < bytes.length; i++) {
-        def temp = Integer.toHexString((bytes[i] & 0xFF) as Integer);
+        def temp = Integer.toHexString((bytes[i] & 0xFF) as Integer)
         if (temp.length() == 1) {
-            sb.append("0");
+            sb.append("0")
         }
-        sb.append(temp);
+        sb.append(temp)
     }
     sb.toString()
 }
