@@ -50,6 +50,8 @@ public class PluginConfig {
     @Getter
     private SqlConfig sqlConfig;
     @Getter
+    private MapperConfig mapperConfig;
+    @Getter
     private String nameAllowedRegular;
     private final MultiCore core;
     @Getter
@@ -88,6 +90,10 @@ public class PluginConfig {
         saveResource("config.yml", false);
         saveResource("mapper.yml", false);
         saveResourceDir("examples", true);
+        if (mapperConfig != null)
+            mapperConfig.save();
+        mapperConfig = new MapperConfig(dataFolder);
+        mapperConfig.reload();
 
         CommentedConfigurationNode configConfigurationNode =
                 YamlConfigurationLoader.builder().file(new File(dataFolder, "config.yml")).build().load();
@@ -208,9 +214,10 @@ public class PluginConfig {
             ProxyConfig authProxy = ProxyConfig.read(yggdrasilAuthNode.node("authProxy"));
 
             if (serviceType == ServiceType.OFFICIAL) {
-                return new OfficialYggdrasilServiceConfig(id, name,
+                String customSessionServer = yggdrasilAuthNode.node("official").node("sessionServer").getString("https://sessionserver.mojang.com");
+		        return new OfficialYggdrasilServiceConfig(id, name,
                         initUUID,initNameFormat, whitelist,
-                        skinRestorer, trackIp, timeout, retry, retryDelay, authProxy);
+                        skinRestorer, trackIp, timeout, retry, retryDelay, authProxy, customSessionServer);
             }
 
             if (serviceType == ServiceType.BLESSING_SKIN) {
