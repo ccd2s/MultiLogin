@@ -2,6 +2,7 @@ package moe.caa.multilogin.bukkit.impl;
 
 import moe.caa.multilogin.api.internal.plugin.IPlayer;
 import moe.caa.multilogin.bukkit.main.MultiLoginBukkit;
+import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 
 import java.net.SocketAddress;
@@ -18,7 +19,7 @@ public class BukkitPlayer extends BukkitSender implements IPlayer {
 
     @Override
     public void kickPlayer(String message) {
-        MultiLoginBukkit.getInstance().getServer().getScheduler().runTask(MultiLoginBukkit.getInstance(), () -> player.kickPlayer(message));
+        MultiLoginBukkit.getInstance().getServer().getScheduler().runTask(MultiLoginBukkit.getInstance(), () -> player.kick(Component.text(message)));
     }
 
     @Override

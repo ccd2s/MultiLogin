@@ -12,7 +12,7 @@ import java.lang.reflect.*
 import java.util.concurrent.ConcurrentHashMap
 
 
-class BukkitInjector : Injector {
+abstract class BukkitInjector : Injector {
     companion object {
         val kickMsg: MutableMap<Thread, String> = ConcurrentHashMap()
     }
