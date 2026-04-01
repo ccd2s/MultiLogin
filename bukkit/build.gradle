@@ -31,12 +31,10 @@ shadowJar {
         archiveVersion.set(ver)
     }
     archiveClassifier.set("")
-    from {
-        project(':core').tasks.shadowJar.archiveFile
-    }
-    from {
-        project(':bukkit:injector').tasks.shadowJar.archiveFile
-    }
+    dependsOn(':core:shadowJar', ':bukkit:injector:shadowJar')
+
+    from(project(':core').layout.buildDirectory.file('libs/MultiLogin-Core.JarFile'))
+    from(project(':bukkit:injector').layout.buildDirectory.file('libs/MultiLogin-Bukkit-Injector.JarFile'))
 }
 
 
