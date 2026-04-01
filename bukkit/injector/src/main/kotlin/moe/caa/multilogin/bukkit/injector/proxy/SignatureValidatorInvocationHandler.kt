@@ -8,7 +8,7 @@ class SignatureValidatorInvocationHandler(
 ) : InvocationHandler {
 
     override fun invoke(proxy: Any, method: Method, args: Array<out Any>): Any {
-        if (method.returnType == Boolean.Companion::class.java) {
+        if (method.returnType == Boolean::class.javaPrimitiveType || method.returnType == Boolean::class.javaObjectType) {
             return true
         }
         return method.invoke(obj, *args)
