@@ -42,7 +42,7 @@ public class CheckUpdater {
         Request build = new Request.Builder().get().url("https://api.github.com/repos/CaaMoe/MultiLogin/contents/latest").build();
         Call call = client.newCall(build);
         try (Response execute = call.execute();
-             ByteArrayOutputStream baos = new ByteArrayOutputStream();
+             ByteArrayOutputStream baos = new ByteArrayOutputStream()
         ) {
             String content = JsonParser.parseString(Objects.requireNonNull(execute.body()).string())
                     .getAsJsonObject().getAsJsonPrimitive("content").getAsString();

@@ -35,6 +35,6 @@ public interface SkinRestorerResult {
         RESTORER_ASYNC,
 
         // 皮肤修复失败
-        RESTORER_FAILED;
+        RESTORER_FAILED
     }
 }

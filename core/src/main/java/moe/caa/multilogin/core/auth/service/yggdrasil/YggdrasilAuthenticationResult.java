@@ -60,6 +60,6 @@ public class YggdrasilAuthenticationResult extends BaseServiceAuthenticationResu
         // 验证失败
         VALIDATION_FAILED,
         // 没有验证服务器
-        NO_SERVICE;
+        NO_SERVICE
     }
 }

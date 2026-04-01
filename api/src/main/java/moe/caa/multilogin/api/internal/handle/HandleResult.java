@@ -18,6 +18,6 @@ public class HandleResult {
 
     public enum Type {
         NONE,
-        KICK;
+        KICK
     }
 }

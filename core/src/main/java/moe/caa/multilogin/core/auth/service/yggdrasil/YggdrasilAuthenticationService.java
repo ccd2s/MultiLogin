@@ -29,7 +29,7 @@ public class YggdrasilAuthenticationService {
         final Set<Integer> ids = core.getPluginConfig().getServiceIdMap().entrySet().stream()
                 .filter(e -> e.getValue() instanceof BaseYggdrasilServiceConfig)
                 .map(Map.Entry::getKey).collect(Collectors.toSet());
-        if (ids.size() == 0) return YggdrasilAuthenticationResult.ofNoService();
+        if (ids.isEmpty()) return YggdrasilAuthenticationResult.ofNoService();
 
 
         // 主要的验证服务器ID表
@@ -62,14 +62,14 @@ public class YggdrasilAuthenticationService {
         ));
 
         boolean serverBreakdown = false;
-        if (primaries.size() != 0) {
+        if (!primaries.isEmpty()) {
             YggdrasilAuthenticationResult result = hasJoined0(username, serverId, ip, primaries);
             if (result.getReason() == YggdrasilAuthenticationResult.Reason.ALLOWED) return result;
             if (result.getReason() == YggdrasilAuthenticationResult.Reason.SERVER_BREAKDOWN) {
                 serverBreakdown = true;
             }
         }
-        if (secondaries.size() != 0) {
+        if (!secondaries.isEmpty()) {
             YggdrasilAuthenticationResult result = hasJoined0(username, serverId, ip, secondaries);
             if (result.getReason() == YggdrasilAuthenticationResult.Reason.ALLOWED) return result;
             if (result.getReason() == YggdrasilAuthenticationResult.Reason.SERVER_BREAKDOWN) {
@@ -101,7 +101,7 @@ public class YggdrasilAuthenticationService {
                     context.getResponse().get().getValue2()
             );
         }
-        if (context.getServiceUnavailable().size() != 0) {
+        if (!context.getServiceUnavailable().isEmpty()) {
             for (Map.Entry<BaseYggdrasilServiceConfig, Throwable> entry : context.getServiceUnavailable().entrySet()) {
                 LoggerProvider.getLogger().debug("An exception occurred during authentication of the yggdrasil service whose ID is " + entry.getKey().getId(), entry.getValue());
             }

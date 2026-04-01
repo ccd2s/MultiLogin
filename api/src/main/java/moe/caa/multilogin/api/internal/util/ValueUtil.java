@@ -71,7 +71,7 @@ public class ValueUtil {
      * @return 字符串是否为空
      */
     public static boolean isEmpty(String str) {
-        return str == null || str.length() == 0;
+        return str == null || str.isEmpty();
     }
 
     public static String transPapi(String s, Pair<?, ?>... pairs) {
@@ -106,7 +106,7 @@ public class ValueUtil {
         return joiner.toString() + lastDelimiter + elements[elements.length - 1];
     }
 
-    public static String join(CharSequence delimiter, CharSequence lastDelimiter, Collection<? extends Object> elements) {
+    public static String join(CharSequence delimiter, CharSequence lastDelimiter, Collection<?> elements) {
         return join(delimiter, lastDelimiter, elements.toArray(new Object[0]));
     }
 

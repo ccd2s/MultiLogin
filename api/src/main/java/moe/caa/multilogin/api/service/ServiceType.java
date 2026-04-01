@@ -1,10 +1,12 @@
 package moe.caa.multilogin.api.service;
 
+import lombok.Getter;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
  * 验证服务类型
  */
+@Getter
 @ApiStatus.NonExtendable
 public enum ServiceType {
 
@@ -34,7 +36,4 @@ public enum ServiceType {
         this.yggdrasilService = yggdrasilService;
     }
 
-    public boolean isYggdrasilService() {
-        return yggdrasilService;
-    }
 }

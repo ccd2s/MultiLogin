@@ -41,7 +41,7 @@ public class InGameProfileTableV3 {
             // 查新表有没有数据，没有的话就尝试一下数据升级
             try (
                     PreparedStatement prepareStatement = connection.prepareStatement("SELECT COUNT(0) FROM " + tableName);
-                    ResultSet resultSet = prepareStatement.executeQuery();
+                    ResultSet resultSet = prepareStatement.executeQuery()
             ) {
                 resultSet.next();
                 if (resultSet.getInt(1) != 0) {
@@ -68,7 +68,7 @@ public class InGameProfileTableV3 {
         // 读老表
         List<Pair<byte[], String>> oldData = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement("SELECT in_game_uuid, current_username FROM " + tableNameV2);
-             ResultSet resultSet = statement.executeQuery();) {
+             ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 oldData.add(new Pair<>(resultSet.getBytes(1), resultSet.getString(2)));
             }
@@ -179,7 +179,6 @@ public class InGameProfileTableV3 {
      *
      * @param inGameUUID      游戏内 UUID
      * @param currentUsername 新的名字
-     * @throws SQLException
      */
     public void updateUsername(UUID inGameUUID, String currentUsername) throws SQLException {
         String sql = String.format(

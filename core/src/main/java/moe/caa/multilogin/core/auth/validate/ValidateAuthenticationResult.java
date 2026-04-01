@@ -36,6 +36,6 @@ public class ValidateAuthenticationResult {
         // 允许登录
         ALLOWED,
         // 不允许登录
-        DISALLOWED;
+        DISALLOWED
     }
 }

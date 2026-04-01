@@ -125,7 +125,7 @@ public class PluginLoader {
         }
 
         // 下载缺失文件
-        if (needDownload.size() != 0) {
+        if (!needDownload.isEmpty()) {
             LoggerProvider.getLogger().info(
                     String.format("Downloading %d missing files...", needDownload.size())
             );
@@ -173,7 +173,7 @@ public class PluginLoader {
         }
         output.deleteOnExit();
         try (InputStream is = PluginLoader.class.getClassLoader().getResourceAsStream(nestJarName);
-             FileOutputStream fos = new FileOutputStream(output);
+             FileOutputStream fos = new FileOutputStream(output)
         ) {
             IOUtil.copy(Objects.requireNonNull(is, nestJarName), fos);
         }
@@ -223,7 +223,7 @@ public class PluginLoader {
     // 获得文件sha256
     private String getSha256(File file) throws Exception {
         try (FileInputStream fis = new FileInputStream(file);
-             ByteArrayOutputStream baos = new ByteArrayOutputStream();) {
+             ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             byte[] buff = new byte[1024];
             int n;
             while ((n = fis.read(buff)) > 0) {

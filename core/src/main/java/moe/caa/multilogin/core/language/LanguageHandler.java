@@ -52,13 +52,13 @@ public class LanguageHandler implements LanguageAPI {
         }
 
         // 加载文件内容
-        try (InputStream inputStream = new FileInputStream(messagePropertiesFile);) {
+        try (InputStream inputStream = new FileInputStream(messagePropertiesFile)) {
             tmp.load(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         }
 
         // 补全内容
         try (InputStream resourceAsStream = Objects.requireNonNull(getClass().getResourceAsStream("/message.properties"));
-             InputStreamReader isr = new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8);
+             InputStreamReader isr = new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8)
         ) {
             Properties inside = new Properties();
             inside.load(isr);

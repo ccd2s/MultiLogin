@@ -32,7 +32,6 @@ public class MultiLoginBukkit extends JavaPlugin implements IPlugin {
         } catch (Exception e) {
             LoggerProvider.getLogger().error("An exception was encountered while initializing the plugin.", e);
             runServer.shutdown();
-            return;
         }
     }
 

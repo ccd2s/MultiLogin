@@ -1,5 +1,6 @@
 package moe.caa.multilogin.core.auth.validate;
 
+import lombok.Getter;
 import moe.caa.multilogin.api.internal.logger.LoggerProvider;
 import moe.caa.multilogin.core.auth.service.BaseServiceAuthenticationResult;
 import moe.caa.multilogin.core.auth.validate.entry.AssignInGameFlows;
@@ -16,6 +17,7 @@ import java.util.Arrays;
  * 游戏内验证集中处理程序
  */
 public class ValidateAuthenticationService {
+    @Getter
     private final MultiCore core;
     private final SequenceFlows<ValidateContext> sequenceFlows;
 

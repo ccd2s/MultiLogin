@@ -46,7 +46,7 @@ public class UserDataTableV3 {
             // 查新表有没有数据，没有的话就尝试一下数据升级
             try (
                     PreparedStatement prepareStatement = connection.prepareStatement("SELECT COUNT(0) FROM " + tableName);
-                    ResultSet resultSet = prepareStatement.executeQuery();
+                    ResultSet resultSet = prepareStatement.executeQuery()
             ) {
                 resultSet.next();
                 if (resultSet.getInt(1) != 0) {
@@ -81,7 +81,7 @@ public class UserDataTableV3 {
         // 读老表
         List<V2Entry> oldData = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement("SELECT online_uuid, yggdrasil_id, in_game_profile_uuid, whitelist FROM " + tableNameV2);
-             ResultSet resultSet = statement.executeQuery();) {
+             ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 oldData.add(new V2Entry(resultSet.getBytes(1),
                         resultSet.getBytes(2)[0],

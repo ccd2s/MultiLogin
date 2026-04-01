@@ -10,5 +10,5 @@ public enum Signal {
     /**
      * 异常终止
      */
-    TERMINATED;
+    TERMINATED
 }

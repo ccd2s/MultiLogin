@@ -1,6 +1,5 @@
 package moe.caa.multilogin.api;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public interface MapperConfigAPI {

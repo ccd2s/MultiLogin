@@ -175,7 +175,7 @@ public class PluginConfig {
             ));
         });
 
-        if (idMap.size() == 0) LoggerProvider.getLogger().warn(
+        if (idMap.isEmpty()) LoggerProvider.getLogger().warn(
                 "The server has not added any authentication service, which will prevent all players from logging in."
         );
         else LoggerProvider.getLogger().info(String.format(
@@ -224,7 +224,7 @@ public class PluginConfig {
                 return new BlessingSkinYggdrasilServiceConfig(id, name,
                         initUUID,initNameFormat, whitelist,
                         skinRestorer, trackIp, timeout, retry, retryDelay, authProxy,
-                        yggdrasilAuthNode.node("blessingSkin").node("apiRoot").getString());
+                        Objects.requireNonNull(yggdrasilAuthNode.node("blessingSkin").node("apiRoot").getString()));
             }
 
             if (serviceType == ServiceType.CUSTOM_YGGDRASIL) {
@@ -255,7 +255,7 @@ public class PluginConfig {
         File file = new File(dataFolder, path);
         if (!file.exists()) Files.createDirectory(file.toPath());
         try (JarFile jarFile = new JarFile(new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI()))) {
-            List<JarEntry> jarFiles = jarFile.stream().filter(jarEntry -> jarEntry.getRealName().startsWith(path)).filter(jarEntry -> !jarEntry.getRealName().equals(path + "/")).collect(Collectors.toList());
+            List<JarEntry> jarFiles = jarFile.stream().filter(jarEntry -> jarEntry.getRealName().startsWith(path)).filter(jarEntry -> !jarEntry.getRealName().equals(path + "/")).toList();
             for (JarEntry je : jarFiles) {
 //                if (je.isDirectory()) {
 //                暂时不考虑目录下目录情况

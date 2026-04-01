@@ -2,6 +2,7 @@ package moe.caa.multilogin.bukkit.main;
 
 import moe.caa.multilogin.bukkit.impl.BukkitSender;
 import org.bukkit.command.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,7 +24,7 @@ public class CommandHandler {
     private class Executor implements CommandExecutor, TabCompleter {
 
         @Override
-        public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+        public boolean onCommand(@NotNull CommandSender commandSender, Command command, @NotNull String s, String[] strings) {
             String[] ns = new String[strings.length + 1];
             System.arraycopy(strings, 0, ns, 1, strings.length);
             ns[0] = command.getName();
@@ -32,7 +33,7 @@ public class CommandHandler {
         }
 
         @Override
-        public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
+        public List<String> onTabComplete(@NotNull CommandSender commandSender, Command command, @NotNull String s, String[] strings) {
             String[] ns = new String[strings.length + 1];
             System.arraycopy(strings, 0, ns, 1, strings.length);
             ns[0] = command.getName();

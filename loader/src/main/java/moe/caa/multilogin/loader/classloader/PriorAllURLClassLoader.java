@@ -31,7 +31,7 @@ public class PriorAllURLClassLoader extends PriorURLClassLoader {
 
     @Override
     public Class<?> defineClass(String name, byte[] bytes) {
-        return defineClass(name, bytes, 0, bytes.length);
+        return super.defineClass(name, bytes);
     }
 
     private boolean containIgnore(String name) {

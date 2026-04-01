@@ -9,29 +9,16 @@ import moe.caa.multilogin.core.configuration.service.FloodgateServiceConfig;
 import moe.caa.multilogin.core.main.MultiCore;
 import org.geysermc.event.PostOrder;
 import org.geysermc.event.subscribe.Subscribe;
-import org.geysermc.event.subscribe.Subscriber;
-import org.geysermc.event.subscribe.impl.SubscriberImpl;
-import org.geysermc.floodgate.api.FloodgateApi;
-import org.geysermc.event.PostOrder;
-import org.geysermc.event.subscribe.Subscriber;
-import org.geysermc.event.subscribe.impl.SubscriberImpl;
 import org.geysermc.floodgate.api.FloodgateApi;
 import org.geysermc.floodgate.api.InstanceHolder;
-import org.geysermc.floodgate.api.event.FloodgateEventBus;
-import org.geysermc.floodgate.api.event.skin.SkinApplyEvent;
 import org.geysermc.floodgate.api.event.skin.SkinApplyEvent;
 import org.geysermc.floodgate.api.handshake.HandshakeData;
 import org.geysermc.floodgate.api.handshake.HandshakeHandler;
 import org.geysermc.floodgate.util.BedrockData;
 import org.geysermc.floodgate.util.LinkedPlayer;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Field;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.UUID;
-import java.util.function.Consumer;
 
 public class FloodgateAuthenticationService implements HandshakeHandler {
     private final MultiCore multiCore;
