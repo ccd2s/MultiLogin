@@ -5,6 +5,7 @@ import com.mojang.authlib.minecraft.MinecraftSessionService
 import com.mojang.authlib.properties.Property
 import moe.caa.multilogin.api.internal.auth.AuthResult
 import moe.caa.multilogin.api.internal.logger.LoggerProvider
+import moe.caa.multilogin.api.service.ServiceType
 import moe.caa.multilogin.api.internal.skinrestorer.SkinRestorerResult
 import moe.caa.multilogin.bukkit.injector.BukkitInjector
 import moe.caa.multilogin.bukkit.main.MultiLoginBukkit
@@ -63,6 +64,11 @@ class YggdrasilMinecraftSessionServiceInvocationHandler(
                         )
                     )
                     LoggerProvider.getLogger().debug("An exception occurred while processing the skin repair.", e)
+                }
+                if (result.baseServiceAuthenticationResult.serviceConfig.serviceType == ServiceType.OFFICIAL) {
+                    BukkitInjector.clearUnsignedChatPlayer(profileName, gameProfile.name, gameProfile.id)
+                } else {
+                    BukkitInjector.markUnsignedChatPlayer(profileName, gameProfile.name, gameProfile.id)
                 }
                 return generateResponse(method.returnType, gameProfile)
             } else {
