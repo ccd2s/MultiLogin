@@ -4,10 +4,10 @@ plugins {
 }
 
 repositories {
-    maven { url "https://repo.codemc.io/repository/maven-public/" }
-    maven { url "https://repo.codemc.io/repository/nms/" }
-    maven { url "https://papermc.io/repo/repository/maven-public/" }
-    maven { url "https://repo.dmulloy2.net/repository/public/" }
+    maven { url = "https://repo.codemc.io/repository/maven-public/" }
+    maven { url = "https://repo.codemc.io/repository/nms/" }
+    maven { url = "https://papermc.io/repo/repository/maven-public/" }
+    maven { url = "https://repo.dmulloy2.net/repository/public/" }
 }
 
 java {

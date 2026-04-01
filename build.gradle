@@ -22,7 +22,7 @@ subprojects {
                 def line = scanner.nextLine()
                 if (line.trim().length() == 0 || (line.charAt(0) as String) == '#') continue
                 maven {
-                    url line
+                    url = line
                 }
             }
         }

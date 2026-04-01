@@ -3,9 +3,9 @@ plugins {
 }
 
 repositories {
-    maven { url "https://repo.codemc.io/repository/nms/" }
-    maven { url "https://papermc.io/repo/repository/maven-public/" }
-    maven { url "https://hub.spigotmc.org/nexus/content/groups/public/" }
+    maven { url = "https://repo.codemc.io/repository/nms/" }
+    maven { url = "https://papermc.io/repo/repository/maven-public/" }
+    maven { url = "https://hub.spigotmc.org/nexus/content/groups/public/" }
 }
 
 dependencies {

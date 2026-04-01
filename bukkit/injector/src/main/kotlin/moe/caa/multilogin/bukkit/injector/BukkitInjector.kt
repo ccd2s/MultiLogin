@@ -12,7 +12,7 @@ import java.lang.reflect.*
 import java.util.concurrent.ConcurrentHashMap
 
 
-abstract class BukkitInjector : Injector {
+class BukkitInjector : Injector {
     companion object {
         val kickMsg: MutableMap<Thread, String> = ConcurrentHashMap()
     }
@@ -39,7 +39,7 @@ abstract class BukkitInjector : Injector {
 
             val signatureValidatorClass: Class<*>? = try {
                 Class.forName("net.minecraft.util.SignatureValidator")
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
                 null
             }
 
@@ -116,7 +116,7 @@ abstract class BukkitInjector : Injector {
                     }
                     val o = declaredField[source]
                     if (ignore.add(o.javaClass)) return forceGetNMS(o, needGet, ignore)
-                } catch (ignored: Throwable) {
+                } catch (_: Throwable) {
                 }
             }
             if (sourceClass.superclass == null) break
