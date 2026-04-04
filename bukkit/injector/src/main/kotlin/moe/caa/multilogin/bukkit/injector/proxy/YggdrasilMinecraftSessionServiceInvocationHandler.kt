@@ -23,7 +23,15 @@ class YggdrasilMinecraftSessionServiceInvocationHandler(
 ) : InvocationHandler {
     override fun invoke(proxy: Any, method: Method, args: Array<out Any>): Any? {
         if (method.name.equals("hasJoinedServer")) {
-            val profileName: String = if(args[0] is String) args[0] as String else (args[0] as GameProfile).name
+            val profileName: String = if (args[0] is String) args[0] as String else {
+                // 旧版 authlib: getName()；新版 authlib: name()
+                val gp = args[0] as GameProfile
+                try {
+                    GameProfile::class.java.getMethod("name").invoke(gp) as String
+                } catch (_: NoSuchMethodException) {
+                    GameProfile::class.java.getMethod("getName").invoke(gp) as String
+                }
+            }
             val serverId: String = args[1] as String
             val ip = if (args.size == 3 && args[2] is InetSocketAddress) URLEncoder.encode(
                 (args[2] as InetSocketAddress).address.hostAddress,
@@ -91,8 +99,25 @@ class YggdrasilMinecraftSessionServiceInvocationHandler(
         response.propertyMap.forEach { (k, u) ->
             multimap.put(k, Property(u.name, u.value, u.signature))
         }
-        val properties = com.mojang.authlib.properties.PropertyMap(multimap)
-        val result = GameProfile(response.id, response.name, properties)
+        val result = try {
+            // 1.21.9+: PropertyMap(Multimap) 构造函数 + GameProfile(UUID, String, PropertyMap)
+            val properties = com.mojang.authlib.properties.PropertyMap(multimap)
+            GameProfile(response.id, response.name, properties)
+        } catch (_: NoSuchMethodError) {
+            // 1.21.9 以前: GameProfile(UUID, String)，再单独写入属性
+            val profile = GameProfile::class.java
+                .getConstructor(java.util.UUID::class.java, String::class.java)
+                .newInstance(response.id, response.name)
+            // 旧版 authlib: getProperties()；新版 authlib: properties()
+            @Suppress("UNCHECKED_CAST")
+            val props = try {
+                GameProfile::class.java.getMethod("properties").invoke(profile)
+            } catch (_: NoSuchMethodException) {
+                GameProfile::class.java.getMethod("getProperties").invoke(profile)
+            } as com.google.common.collect.Multimap<String, Property>
+            multimap.forEach { k, v -> props.put(k, v) }
+            profile
+        }
         if(returnType == result.javaClass){
             return result
         }
