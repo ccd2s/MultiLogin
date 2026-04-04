@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
         with:
           fetch-depth: 2
 
       - name: Setup JDK 21
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: 21
@@ -36,19 +36,11 @@ jobs:
             echo "release=false" >> $GITHUB_ENV;
           fi
 
-      - name: Build Dev
-        if: env.release == 'false'
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: 9.4
-          arguments: ShadowJar
+      - name: Set Gradle
+        uses: gradle/actions/setup-gradle@v6
 
-      - name: Build Release
-        if: env.release == 'true'
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: current
-          arguments: ShadowJar -Denv=final
+      - name: Build With Gradle
+        run: ./gradlew build ShadowJar -Denv=final
 
       - name: Cleanup Gradle Cache
         run: |
