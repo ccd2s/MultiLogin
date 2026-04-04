@@ -7,6 +7,7 @@ import org.spongepowered.configurate.ConfigurationNode
 import org.spongepowered.configurate.yaml.YamlConfigurationLoader
 import java.io.File
 import java.util.TreeMap
+import kotlin.collections.iterator
 
 /**
  * ChatSessionBlocker 数据包映射配置
