@@ -3,16 +3,28 @@ import org.apache.tools.ant.filters.ReplaceTokens
 import java.text.SimpleDateFormat
 
 plugins {
-    id("net.nemerosa.versioning") version "3.1.0" apply false
-    id('org.jetbrains.kotlin.jvm') version '2.3.20' apply false
+    id 'org.jetbrains.kotlin.jvm' version '2.3.20' apply false
 }
 
 apply from: './constant.gradle'
 
 allprojects {
     apply plugin: "java"
-    apply plugin: 'net.nemerosa.versioning'
-    version = versioning.info.build
+    def getGitCommitId = { ->
+        try {
+            def proc = "git rev-parse --short HEAD".execute()
+            proc.waitFor()
+            if (proc.exitValue() == 0) {
+                return proc.in.text.trim()
+            } else {
+                return "unknown"
+            }
+        } catch (Exception e) {
+            return "unknown"
+        }
+    }
+    ext.gitCommitId = getGitCommitId()
+    version = "${gitCommitId}"
 }
 
 subprojects {
@@ -79,7 +91,7 @@ subprojects {
             attributes(
                     'Built-By'       : System.properties['user.name'],
                     'Build-Timestamp': new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
-                    'Build-Revision' : versioning.info.commit,
+                    'Build-Revision' : gitCommitId,
                     'Created-By'     : "Gradle ${gradle.gradleVersion}",
                     'Build-Jdk'      : "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})",
                     'Build-OS'       : "${System.properties['os.name']} ${System.properties['os.arch']} ${System.properties['os.version']}"

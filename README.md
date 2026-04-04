@@ -8,6 +8,7 @@ _✨ 正版与多种外置登录共存 ✨_
 [![GitHub license](https://img.shields.io/github/license/CaaMoe/MultiLogin?style=flat-square)](https://github.com/CaaMoe/MultiLogin/blob/master/LICENSE)
 [![QQ Group](https://img.shields.io/badge/QQ%20group-832210691-yellow?style=flat-square)](https://jq.qq.com/?_wv=1027&k=WrOTGIC7)
 [![Join our Discord](https://img.shields.io/discord/1225725211727499347.svg?logo=discord&label=)](https://discord.gg/9vh4kZRFCj)
+[![bStats](https://img.shields.io/bstats/servers/21890?color=brightgreen&label=bStats&logo=bs&style=flat-square)](https://bstats.org/plugin/velocity/MultiLogin/21890)
 
 </div>
 
@@ -43,9 +44,8 @@ MultiLogin 是一款主要为 Minecraft 代理端设计的插件，旨在实现�
 ## 构建
 
 1. 克隆这个项目
-2. 参照 [说明](https://github.com/CaaMoe/MultiLogin/blob/v6/velocity/libraries/README.md) 补全 velocity 的依赖
-3. 执行 `./gradlew shadowJar` / `gradlew shadowJar`
-4. 在 `*/build/libs` 下寻找你需要的
+2. 执行 `./gradlew shadowJar` / `gradlew shadowJar`
+3. 在 `*/build/libs` 下寻找你需要的
 
 或者你也可以
 
