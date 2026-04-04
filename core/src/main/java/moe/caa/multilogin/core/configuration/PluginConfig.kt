@@ -271,7 +271,7 @@ class PluginConfig(
                     retry,
                     retryDelay,
                     authProxy,
-                    Objects.requireNonNull(yggdrasilAuthNode.node("blessingSkin").node("apiRoot").string),
+                    Objects.requireNonNull(yggdrasilAuthNode.node("blessingSkin").node("apiRoot").string!!)
                 )
             }
 
@@ -296,9 +296,9 @@ class PluginConfig(
                 retry,
                 retryDelay,
                 authProxy,
-                url,
-                postContent,
-                trackIpContent,
+                url!!,
+                postContent!!,
+                trackIpContent!!,
                 method,
             )
         }
