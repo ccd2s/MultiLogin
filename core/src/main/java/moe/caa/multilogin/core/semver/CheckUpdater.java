@@ -25,6 +25,9 @@ import java.util.stream.Collectors;
  * 检查更新程序
  */
 public class CheckUpdater {
+    private static final String PRIMARY_LATEST_URL = "https://api.github.com/repos/ccd2s/MultiLogin-Bukkit/contents/latest";
+    private static final String FALLBACK_LATEST_URL = "https://wget.la/https://api.github.com/repos/ccd2s/MultiLogin-Bukkit/contents/latest";
+
     private final MultiCore core;
 
     public CheckUpdater(MultiCore core) {
@@ -39,11 +42,23 @@ public class CheckUpdater {
                 .readTimeout(Duration.ofMillis(2000))
                 .connectTimeout(Duration.ofMillis(2000))
                 .build();
-        Request build = new Request.Builder().get().url("https://api.github.com/repos/CaaMoe/MultiLogin/contents/latest").build();
+        try {
+            return getLatestVersionNow(client, PRIMARY_LATEST_URL);
+        } catch (IOException e) {
+            LoggerProvider.getLogger().debug("Primary update endpoint failed, trying fallback endpoint.", e);
+            return getLatestVersionNow(client, FALLBACK_LATEST_URL);
+        }
+    }
+
+    private List<SemVersion> getLatestVersionNow(OkHttpClient client, String url) throws IOException {
+        Request build = new Request.Builder().get().url(url).build();
         Call call = client.newCall(build);
         try (Response execute = call.execute();
              ByteArrayOutputStream baos = new ByteArrayOutputStream()
         ) {
+            if (!execute.isSuccessful() || execute.body() == null) {
+                throw new IOException("Request latest version failed: " + execute.code() + " @ " + url);
+            }
             String content = JsonParser.parseString(Objects.requireNonNull(execute.body()).string())
                     .getAsJsonObject().getAsJsonPrimitive("content").getAsString();
             for (String s : content.split("\n")) {
