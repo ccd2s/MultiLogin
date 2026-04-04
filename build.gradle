@@ -29,8 +29,8 @@ subprojects {
     }
 
     dependencies {
-        compileOnly "org.projectlombok:lombok:1.18.24"
-        annotationProcessor "org.projectlombok:lombok:1.18.24"
+        compileOnly "org.projectlombok:lombok:1.18.38"
+        annotationProcessor "org.projectlombok:lombok:1.18.38"
 
         compileOnly("org.jetbrains:annotations:24.1.0")
         annotationProcessor("org.jetbrains:annotations:24.1.0")
@@ -93,7 +93,7 @@ subprojects {
     }
 
     compileJava {
-        sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = targetCompatibility = JavaVersion.VERSION_21
     }
 }
 
