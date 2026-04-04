@@ -4,7 +4,7 @@ plugins {
 
 repositories {
     maven { url = "https://repo.codemc.io/repository/nms/" }
-    maven { url = "https://papermc.io/repo/repository/maven-public/" }
+    maven { url = "https://repo.papermc.io/repository/maven-public/" }
     maven { url = "https://hub.spigotmc.org/nexus/content/groups/public/" }
 }
 
@@ -13,7 +13,7 @@ dependencies {
     implementation project(":flows")
     implementation project(":loader")
 
-    compileOnly 'com.destroystokyo.paper:paper:1.16.5-R0.1-SNAPSHOT'
+    compileOnly 'io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT'
     compileOnly 'net.dmulloy2:ProtocolLib:5.4.0'
 }
 

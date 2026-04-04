@@ -3,6 +3,7 @@ package moe.caa.multilogin.bukkit.injector.proxy
 import com.mojang.authlib.GameProfile
 import com.mojang.authlib.minecraft.MinecraftSessionService
 import com.mojang.authlib.properties.Property
+import com.google.common.collect.LinkedHashMultimap
 import moe.caa.multilogin.api.internal.auth.AuthResult
 import moe.caa.multilogin.api.internal.logger.LoggerProvider
 import moe.caa.multilogin.api.service.ServiceType
@@ -86,10 +87,12 @@ class YggdrasilMinecraftSessionServiceInvocationHandler(
     }
 
     private fun generateResponse(returnType: Type, response: moe.caa.multilogin.api.profile.GameProfile): Any {
-        val result = GameProfile(response.id, response.name)
+        val multimap = LinkedHashMultimap.create<String, Property>()
         response.propertyMap.forEach { (k, u) ->
-            result.properties.put(k, Property(u.name, u.value, u.signature))
+            multimap.put(k, Property(u.name, u.value, u.signature))
         }
+        val properties = com.mojang.authlib.properties.PropertyMap(multimap)
+        val result = GameProfile(response.id, response.name, properties)
         if(returnType == result.javaClass){
             return result
         }
