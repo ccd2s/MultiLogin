@@ -162,7 +162,7 @@ class Dependency {
 
 
 static byte[] getBytes(def url) {
-    def httpURLConnection = (HttpURLConnection) new URL(url).openConnection()
+    def httpURLConnection = (HttpURLConnection) new URI(url).toURL().openConnection()
     httpURLConnection.setDoInput(true)
     httpURLConnection.setDoOutput(false)
     httpURLConnection.connect()

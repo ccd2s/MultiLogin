@@ -19,7 +19,7 @@ allprojects {
             } else {
                 return "unknown"
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
             return "unknown"
         }
     }

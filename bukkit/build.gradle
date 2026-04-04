@@ -38,7 +38,3 @@ shadowJar {
     from(project(':bukkit:injector').layout.buildDirectory.file('libs/MultiLogin-Bukkit-Injector.JarFile'))
 }
 
-
-artifacts {
-    archives shadowJar
-}

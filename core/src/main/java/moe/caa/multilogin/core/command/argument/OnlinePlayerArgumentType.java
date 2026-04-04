@@ -26,7 +26,15 @@ public class OnlinePlayerArgumentType implements ArgumentType<Set<IPlayer>> {
     }
 
     public static Set<IPlayer> getPlayers(final CommandContext<?> context, final String name) {
-        return context.getArgument(name, Set.class);
+        Set<?> players = context.getArgument(name, Set.class);
+        Set<IPlayer> checkedPlayers = new HashSet<>();
+        for (Object player : players) {
+            if (!(player instanceof IPlayer)) {
+                throw new IllegalArgumentException("Argument '" + name + "' does not contain only IPlayer values");
+            }
+            checkedPlayers.add((IPlayer) player);
+        }
+        return checkedPlayers;
     }
 
     public static IPlayer getPlayer(final CommandContext<?> context, final String name) throws CommandSyntaxException {

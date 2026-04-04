@@ -27,7 +27,3 @@ dependencies {
 shadowJar {
     archiveFileName = 'MultiLogin-Bukkit-Injector.JarFile'
 }
-
-artifacts {
-    archives shadowJar
-}

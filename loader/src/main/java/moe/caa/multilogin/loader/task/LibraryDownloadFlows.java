@@ -10,6 +10,7 @@ import moe.caa.multilogin.loader.main.PluginLoader;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ public class LibraryDownloadFlows extends BaseFlows<Void> {
             String downloadUrl = repository + library.getDownloadUrl();
             LoggerProvider.getLogger().debug("Downloading from " + downloadUrl);
             try {
-                bytes = getBytes(new URL(downloadUrl));
+                bytes = getBytes(new URI(downloadUrl).toURL());
                 break;
             } catch (Exception t) {
                 final String cause = String.format("Download from %s failed.", downloadUrl);

@@ -21,7 +21,3 @@ java {
 shadowJar {
     archiveFileName = 'MultiLogin-Core.JarFile'
 }
-
-artifacts {
-    archives shadowJar
-}
