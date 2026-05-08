@@ -43,7 +43,7 @@ class YggdrasilMinecraftSessionServiceInvocationHandler(
     }
 
     private fun handle(method: Method, profileName: String, serverId: String, ip: String): Any? {
-        val multiCoreAPI = MultiLoginBukkit.getInstance().multiCoreAPI
+        val multiCoreAPI = MultiLoginBukkit.instance.multiCoreAPI!!
         try {
             val result = multiCoreAPI.authHandler.auth(profileName, serverId, ip) as LoginAuthResult
             if (result.result == AuthResult.Result.ALLOW) {

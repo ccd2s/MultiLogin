@@ -21,7 +21,7 @@ class PacketHandler {
         params()
             .loginPhase()
         .serverSide()
-        .plugin(MultiLoginBukkit.getInstance())
+        .plugin(MultiLoginBukkit.instance)
         .types(PacketType.Login.Server.DISCONNECT)) {
         override fun onPacketSending(event: PacketEvent) {
             val s = BukkitInjector.kickMsg.remove(Thread.currentThread()) ?: return
@@ -36,7 +36,7 @@ class PacketHandler {
         params()
             .gamePhase(GamePhase.PLAYING)
             .clientSide()
-            .plugin(MultiLoginBukkit.getInstance())
+            .plugin(MultiLoginBukkit.instance)
             .types(PacketType.Play.Client.CHAT_SESSION_UPDATE)){
         override fun onPacketReceiving(event: PacketEvent) {
             if (!BukkitInjector.shouldBlockChatSession(event.player?.name, event.player?.uniqueId)) {
