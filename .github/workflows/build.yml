@@ -2,6 +2,8 @@ name: Java CI
 
 on:
   push:
+    paths-ignore:
+      - '**.md'
   pull_request:
   workflow_dispatch:
 
@@ -48,7 +50,7 @@ jobs:
           rm -f ~/.gradle/caches/modules-2/gc.properties
 
       - name: Upload build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: MultiLogin-Bukkit
           path: |
