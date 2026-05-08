@@ -12,12 +12,12 @@ _✨ Coexisting Minecraft Authentication and Multiple BlessingSkin Authenticatio
 
 </div>
 
+> [!WARNING]
+> This project only provides maintenance for the Bukkit side to ensure the proper functioning of official and LittleSkin logins! We do not address any other issues.
+
 ## Summary
 
-MultiLogin is a plugin designed primarily for Minecraft proxy,
-aimed at supporting the coexistence of Minecraft authentication and multiple BlessingSkin authentication.
-It is used to connect players under two or more external authentication servers,
-allowing them to play together on the same server.
+MultiLogin is a plugin designed primarily for Minecraft proxy servers. It is intended to support the coexistence of official and various third-party login systems, connecting players from two or more third-party authentication servers so they can play together on the same server.
 
 ## Features
 
@@ -29,10 +29,7 @@ allowing them to play together on the same server.
 
 ## Deploy
 
-The minimum requirement is' Java 17 ',
-without the need to install' authlib injector ',
-without any pre plugins,
-and without the need to add or change' JVM 'parameters
+Requires at least `Java 21`. You do not need to install `authlib-injector`, but you do need [ProtocolLib](https://github.com/dmulloy2/ProtocolLib). You also do not need to add or change any `JVM` parameters.
 
 1. [Download](https://github.com/CaaMoe/MultiLogin/releases/latest) plugin
 2. throw into plugins
@@ -45,9 +42,14 @@ See details in [Wiki](https://github.com/CaaMoe/MultiLogin/wiki)
 ## Build
 
 1. Clone this project
-2. Refer to [Description]（ https://github.com/CaaMoe/MultiLogin/blob/v6/velocity/libraries/README.md ）Complete the dependency on velocity
-3. Execute `./gradlew shadowJar`
-4. Find what you need under '*/build/libs'
+2. Run `./gradlew shadowJar` / `gradlew shadowJar`
+3. Look for the files you need in `*/build/libs`
+
+Alternatively, you can
+
+1. [Fork](https://github.com/CaaMoe/MultiLogin/fork) this project
+2. Enable Actions
+3. Commit any file
 
 ## BUG report
 

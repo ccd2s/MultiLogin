@@ -62,6 +62,7 @@ MultiLogin 是一款主要为 Minecraft 代理端设计的插件，旨在实现�
 [new issue](https://github.com/CaaMoe/MultiLogin/issues/new) 点击此处，提交你的问题
 
 [Discord](https://discord.gg/HJXHCZRS) 进来聊聊你的问题
+
 ## 贡献者
 
 <a href="https://github.com/CaaMoe/MultiLogin/graphs/contributors">
